@@ -1,4 +1,4 @@
-lvim.format_on_save = false
+lvim.format_on_save = true
 lvim.lsp.diagnostics.virtual_text = false
 -- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
@@ -114,7 +114,13 @@ lvim.plugins = {
   -- You can run blocks of code like jupyter notebook.
   { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" },
   { "catppuccin/nvim",      as = "catppuccin" },
-
+  { "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+    { "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function()
+      vim.g.mkdp_filetypes = {
+        "markdown" }
+    end, ft = { "markdown" }, } }
+  -- Configure colorscheme
 }
 require("catppuccin").setup({
   flavour = "mocha", -- latte, frappe, macchiato, mocha
