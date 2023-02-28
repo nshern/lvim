@@ -1,6 +1,6 @@
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save.enabled = false
+lvim.format_on_save.enabled = true
 lvim.colorscheme = "catppuccin"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -14,7 +14,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 
-lvim.format_on_save = true
+-- lvim.format_on_save = true
 lvim.lsp.diagnostics.virtual_text = false
 -- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
@@ -135,7 +135,17 @@ lvim.plugins = {
     { "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function()
       vim.g.mkdp_filetypes = {
         "markdown" }
-    end, ft = { "markdown" }, } }
+    end, ft = { "markdown" }, } },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
+
+
+
   -- Configure colorscheme
 }
 require("catppuccin").setup({
@@ -144,7 +154,7 @@ require("catppuccin").setup({
     light = "latte",
     dark = "mocha",
   },
-  transparent_background = false,
+  transparent_background = true,
   show_end_of_buffer = false, -- show the '~' characters after the end of buffers
   term_colors = false,
   dim_inactive = {
@@ -185,4 +195,4 @@ require("catppuccin").setup({
 vim.cmd.colorscheme "catppuccin"
 lvim.colorscheme = "catppuccin"
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "88"
