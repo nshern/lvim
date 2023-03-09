@@ -143,7 +143,8 @@ lvim.plugins = {
       require("todo-comments").setup()
     end,
   },
-
+  ("MunifTanjim/nui.nvim"),
+  ("dpayne/CodeGPT.nvim")
 
 
   -- Configure colorscheme
